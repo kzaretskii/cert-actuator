@@ -12,14 +12,16 @@ import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
-import java.util.*;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
 @EnableScheduling
 public class CertificatesMetric {
-    private Random random = new Random();
-    MultiGauge certificatesGauge = null;
+    MultiGauge certificatesGauge;
     public CertificatesMetric(MeterRegistry registry) {
         certificatesGauge = MultiGauge.builder("test.certificates").register(registry);
     }
@@ -41,7 +43,6 @@ public class CertificatesMetric {
         String filename = System.getProperty("java.home") + relativeCacertsPath;
         try {
             FileInputStream is = new FileInputStream(filename);
-
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             String password = "changeit";
             keystore.load(is, password.toCharArray());
