@@ -16,7 +16,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 }
 
 tasks.withType<Test> {
